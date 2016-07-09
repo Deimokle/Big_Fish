@@ -1,0 +1,32 @@
+/* ------------------ Nav bar ------------------ */
+.navbar {
+    margin-bottom: 0px;
+}
+.navbar-default .navbar-brand{
+    color: #b8b8b8;
+}
+.navbar-default .navbar-brand:hover {
+    color: #ffffff;
+}
+.navbar-default {
+    background-color: #2d2d2d;
+    border-color: #101010;
+    border-radius: 0;
+}
+.navbar-default .navbar-nav > li > a {
+    color: #b8b8b8;
+}
+.navbar-default .navbar-nav > li > a:hover {
+    color: #ffffff;
+}
+.container-fluid > .navbar-header {
+    margin-left: 0px;
+    margin-right: 0px;
+}
+/* ------------------ All page ------------------ */
+body {
+    background-color: #005275;
+}
+.div_boucle {
+    background-color: #e4f1fe;
+}
