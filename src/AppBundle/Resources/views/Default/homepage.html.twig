@@ -4,7 +4,7 @@
     <div class="container-fluid">
         <div class="row">
             {% for event in events %}
-                {% if event.like == false %}
+                {% if event.heart == false %}
             <div style="margin-top: 75px;" class="col-md-offset-2 col-sm-offset-1 col-md-8 col-sm-10 col-xs-12">
                 <td>Name of event :{{ event.title }}</td><br />
                 <td>{{ event.picture }}</td><br />
