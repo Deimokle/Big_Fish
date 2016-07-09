@@ -3,6 +3,7 @@
 namespace AppBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Symfony\Component\HttpFoundation\Request;
 
 
 /**
@@ -15,9 +16,15 @@ class HomepageController extends Controller
      * Lists all Event entities.
      *
      */
-    public function indexAction()
+    public function indexAction(Request $request)
     {
+        $em = $this->getDoctrine()->getManager();
 
-        return $this->render('');
+        $events = $em->getRepository('AppBundle:Event')->findAll();
+
+
+        return $this->render('AppBundle:Default:homepage.html.twig', array(
+            'events' => $events,
+        ));
     }
 }

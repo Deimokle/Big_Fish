@@ -125,4 +125,30 @@ class EventController extends Controller
             ->getForm()
         ;
     }
+    public function loveAction(Request $request, $id)
+    {
+//        $elove = $event->get('loveArray');
+//        var_dump($elove);
+//
+//        if ($elove == null) {
+//            $love =[];
+//            $userId = $this->get('security.context')->getToken()->getUser()->getId();
+//            $love[]=$userId;
+//            $event->set('lovetArray', $love);
+//        }
+//        else {
+//
+//            $user = $this->get('security.context')->getToken()->getUser();
+//            $userId = $user->getId();
+//            $love[]=$userId;
+//            $event->set('lovetArray', $love);
+//
+//        }
+
+
+        return $this->render('AppBundle:Default:homepage.html.twig', array(
+            'event' => $event,
+            'loves' => $event->get('loveArray'),
+        ));
+    }
 }

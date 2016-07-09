@@ -22,3 +22,8 @@ event_delete:
     path:     /{id}/delete
     defaults: { _controller: "AppBundle:Event:delete" }
     methods:  DELETE
+
+love_event:
+    path:     /{id}/loveaction
+    defaults: { _controller: "AppBundle:Event:love" }
+    methods:  GET

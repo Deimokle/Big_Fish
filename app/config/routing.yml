@@ -12,3 +12,7 @@ fos_user:
 homepage:
     path:     /
     defaults: { _controller: "AppBundle:Homepage:index" }
+
+appevent:
+    resource: "@AppBundle/Resources/config/routing.yml"
+    prefix:   /appevent

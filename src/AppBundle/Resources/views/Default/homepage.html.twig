@@ -1,0 +1,18 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <div class="container-fluid">
+        <div class="row">
+            {% for event in events %}
+            <div style="margin-top: 75px;" class="col-md-offset-2 col-sm-offset-1 col-md-8 col-sm-10 col-xs-12">
+                <td>Name of event :{{ event.title }}</td><br />
+                <td>{{ event.picture }}</td><br />
+                <td>{% if event.price == 0 %}free{% else %}{{ event.price }} €{% endif %}</td><br />
+                <td>{{ event.name }}</td><br />
+                <a class="#" id="#" href="{{ path('love_event', { 'id': event.id }) }}">
+                    <i class="glyphicon glyphicon-magnet"></i>Love</a><br />
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+{% endblock %}
