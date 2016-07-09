@@ -1,0 +1,23 @@
+AppBundle\Entity\Event:
+    type: entity
+    table: null
+    repositoryClass: AppBundle\Repository\EventRepository
+    id:
+        id:
+            type: integer
+            id: true
+            generator:
+                strategy: AUTO
+    fields:
+        title:
+            type: string
+            length: 255
+        picture:
+            type: string
+            length: 255
+        price:
+            type: integer
+        name:
+            type: string
+            length: 255
+    lifecycleCallbacks: {  }
