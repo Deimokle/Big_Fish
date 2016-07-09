@@ -21,7 +21,7 @@ class HomepageController extends Controller
         $em = $this->getDoctrine()->getManager();
 
         $events = $em->getRepository('AppBundle:Event')->findAll();
-
+        
 
         return $this->render('AppBundle:Default:homepage.html.twig', array(
             'events' => $events,
