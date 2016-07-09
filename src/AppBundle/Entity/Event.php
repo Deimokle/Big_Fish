@@ -35,9 +35,9 @@ class Event
      */
     public function preUpload()
     {
-        if (null !== $this->picture) {
+        if (null !== $this->file) {
             // do whatever you want to generate a unique name
-            $this->picture = uniqid().'.'.$this->picture->guessExtension();
+            $this->file = uniqid().'.'.$this->picture->guessExtension();
         }
     }
 
