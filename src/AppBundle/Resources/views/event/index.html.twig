@@ -5,13 +5,13 @@
 
     <table>
         <thead>
-            <tr>
-                <th>Id</th>
-                <th>Title</th>
-                <th>Picture</th>
-                <th>Price</th>
-                <th>Name</th>
-                <th>Actions</th>
+            <tr class="titre">
+                <th class="titre">Id</th>
+                <th class="titre">Title</th>
+                <th class="titre">Picture</th>
+                <th class="titre">Price</th>
+                <th class="titre">Name</th>
+                <th class="titre">Actions</th>
             </tr>
         </thead>
         <tbody>
@@ -22,24 +22,14 @@
                 <td>{{ event.picture }}</td>
                 <td>{{ event.price }}</td>
                 <td>{{ event.name }}</td>
-                <td>
-                    <ul>
-                        <li>
-                            <a href="{{ path('event_show', { 'id': event.id }) }}">show</a>
-                        </li>
-                        <li>
-                            <a href="{{ path('event_edit', { 'id': event.id }) }}">edit</a>
-                        </li>
-                    </ul>
+                <td> <a href="{{ path('event_show', { 'id': event.id }) }}">Afficher</a> <a href="{{ path('event_edit', { 'id': event.id }) }}">Modifier</a>
                 </td>
             </tr>
         {% endfor %}
+
         </tbody>
     </table>
+    <a href="{{ path('event_new') }}" class="add">Ajoutez votre événement</a>
 
-    <ul>
-        <li>
-            <a href="{{ path('event_new') }}">Create a new entry</a>
-        </li>
-    </ul>
+
 {% endblock %}

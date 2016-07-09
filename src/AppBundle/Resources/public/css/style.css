@@ -1,20 +1,42 @@
 body {
     font-family: "Liberation Sans";
-
+    margin: 0;
+    padding: 0;
 }
 
 a {
 
 }
-h1{
+h1{ margin-top: -2px;
     font-family: "Liberation Sans";
-    color: #336699;
+    background-color: #336699;
+    text-align: center;
+    text-transform: uppercase;
+    color: #FFFFFF;
+    padding: 10px;
 }
-h2 {
+h2 {text-align: center;
 
 }
+.titre {
+    margin: auto;
+    border-bottom:1px solid #336699;
 
+}
 p {
+    margin: auto;
 
 }
+.add { margin-top: 30px;
+    color: #336699;
+    border: 2px solid #336699;
+    padding: 10px;
+    text-transform: uppercase;
+    font-weight: bold;
+    letter-spacing: 2px;
+}
 
+table {
+    margin: auto;
+    width:80%;
+}
