@@ -23,7 +23,7 @@ class FavController extends Controller
         $events = $em->getRepository('AppBundle:Event')->findAll();
 
 
-        return $this->render('AppBundle:Default:homepage.html.twig', array(
+        return $this->render('AppBundle:Default:fav.html.twig', array(
             'events' => $events,
         ));
     }

@@ -12,6 +12,7 @@
                     <td>{{ event.name }}</td><br />
                     <a class="#" id="#" href="{{ path('love_event', { 'id': event.id }) }}">
                         <i class="glyphicon glyphicon-magnet"></i>Love</a><br />
+                    <a href="{{ path('event_edit', { 'id': event.id }) }}">edit</a>
                 </div>
                  {% endif %}
             {% endfor %}

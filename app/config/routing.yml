@@ -14,7 +14,7 @@ homepage:
     defaults: { _controller: "AppBundle:Homepage:index" }
 
 fav:
-    path:     /
+    path:     /fav
     defaults: { _controller: "AppBundle:Fav:index" }
 
 appevent:
