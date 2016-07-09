@@ -23,7 +23,7 @@ class User extends BaseUser
 
     protected function getUploadRootDir()
     {
-        return __DIR__.'/../../../web/'.$this->getUploadDir();
+        return __DIR__.'../../../web/'.$this->getUploadDir();
     }
 
     public function getWebPath()
@@ -43,7 +43,7 @@ class User extends BaseUser
     {
         if (null !== $this->picture) {
             // do whatever you want to generate a unique name
-            $this->image = uniqid().'.'.$this->picture->guessExtension();
+            $this->file = uniqid().'.'.$this->picture->guessExtension();
         }
     }
 
@@ -76,9 +76,15 @@ class User extends BaseUser
      */
     public function upload()
     {
-        if (null === $this->picture) {
+        if (null === $this->file) {
             return;
         }
+        // if there is an error when moving the file, an exception will
+        // be automatically thrown by move(). This will properly prevent
+        // the entity from being persisted to the database on error
+        $this->file->move($this->getUploadRootDir(), $this->picture);
+
+        unset($this->file);
     }
 
 

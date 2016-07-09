@@ -18,7 +18,7 @@ class Event
 
     protected function getUploadRootDir()
     {
-        return __DIR__.'/../../../web/'.$this->getUploadDir();
+        return __DIR__.'../../../web/'.$this->getUploadDir();
     }
 
     public function getWebPath()
@@ -35,9 +35,9 @@ class Event
      */
     public function preUpload()
     {
-        if (null !== $this->file) {
+        if (null !== $this->picture) {
             // do whatever you want to generate a unique name
-            $this->picture = uniqid().'.'.$this->file->guessExtension();
+            $this->picture = uniqid().'.'.$this->picture->guessExtension();
         }
     }
 
