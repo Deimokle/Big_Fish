@@ -14,22 +14,89 @@ use Symfony\Component\Validator\Constraints as Assert;
  */
 class User extends BaseUser
 {
-    /**
-     * @ORM\Id
-     * @ORM\Column(type="integer")
-     * @ORM\GeneratedValue(strategy="AUTO")
-     */
-    protected $id;
+    public $picture;
 
-    public function __construct()
+    protected function getUploadDir()
     {
-        parent::__construct();
-            // your own logic
+        return 'uploads/img';
     }
+
+    protected function getUploadRootDir()
+    {
+        return __DIR__.'/../../../web/'.$this->getUploadDir();
+    }
+
+    public function getWebPath()
+    {
+        return null === $this->picture ? null : $this->getUploadDir().'/'.$this->picture;
+    }
+
+    public function getAbsolutePath()
+    {
+        return null === $this->picture ? null : $this->getUploadRootDir().'/'.$this->picture;
+    }
+
     /**
-     * @var string
+     * @ORM\PrePersist
      */
-    private $firstname;
+    public function preUpload()
+    {
+        if (null !== $this->picture) {
+            // do whatever you want to generate a unique name
+            $this->image = uniqid().'.'.$this->picture->guessExtension();
+        }
+    }
+
+    /**
+     * @ORM\PrePersist
+     */
+    public function setCreatedAtValue()
+    {
+        // Add your code here
+    }
+
+    /**
+     * @ORM\PrePersist
+     */
+    public function setExpiresAtValue()
+    {
+        // Add your code here
+    }
+
+    /**
+     * @ORM\PreUpdate
+     */
+    public function setUpdatedAtValue()
+    {
+        // Add your code here
+    }
+
+    /**
+     * @ORM\PostPersist
+     */
+    public function upload()
+    {
+        if (null === $this->picture) {
+            return;
+        }
+    }
+
+
+    /**
+     * @ORM\PostRemove
+     */
+    public function removeUpload()
+    {
+        if ($picture = $this->getAbsolutePath()) {
+            unlink($picture);
+        }
+    }
+    
+    
+    
+    
+    
+    #GENERATE#
 
     /**
      * @var string
@@ -39,13 +106,37 @@ class User extends BaseUser
     /**
      * @var string
      */
-    private $picture;
+    private $firstname;
+
 
     /**
      * @var integer
      */
     private $age;
 
+
+    /**
+     * Set name
+     *
+     * @param string $name
+     * @return User
+     */
+    public function setName($name)
+    {
+        $this->name = $name;
+
+        return $this;
+    }
+
+    /**
+     * Get name
+     *
+     * @return string 
+     */
+    public function getName()
+    {
+        return $this->name;
+    }
 
     /**
      * Set firstname
@@ -71,29 +162,6 @@ class User extends BaseUser
     }
 
     /**
-     * Set name
-     *
-     * @param string $name
-     * @return User
-     */
-    public function setName($name)
-    {
-        $this->name = $name;
-
-        return $this;
-    }
-
-    /**
-     * Get name
-     *
-     * @return string
-     */
-    public function getName()
-    {
-        return $this->name;
-    }
-
-    /**
      * Set picture
      *
      * @param string $picture
@@ -109,7 +177,7 @@ class User extends BaseUser
     /**
      * Get picture
      *
-     * @return string 
+     * @return string
      */
     public function getPicture()
     {
@@ -138,4 +206,6 @@ class User extends BaseUser
     {
         return $this->age;
     }
+
+
 }

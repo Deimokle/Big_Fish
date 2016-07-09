@@ -16,7 +16,7 @@ class EventType extends AbstractType
     {
         $builder
             ->add('title')
-            ->add('picture')
+            ->add('picture', 'file', array('label' => 'Big_Fish', 'required' => false))
             ->add('price')
             ->add('name')
             ->add('heart')

@@ -14,128 +14,31 @@ use Symfony\Component\Validator\Constraints as Assert;
  */
 class User extends BaseUser
 {
-    /**
-     * @ORM\Id
-     * @ORM\Column(type="integer")
-     * @ORM\GeneratedValue(strategy="AUTO")
-     */
-    protected $id;
-
-    public function __construct()
+    protected function getUploadDir()
     {
-        parent::__construct();
-            // your own logic
-    }
-    /**
-     * @var string
-     */
-    private $firstname;
-
-    /**
-     * @var string
-     */
-    private $name;
-
-    /**
-     * @var string
-     */
-    private $picture;
-
-    /**
-     * @var integer
-     */
-    private $age;
-
-
-    /**
-     * Set firstname
-     *
-     * @param string $firstname
-     * @return User
-     */
-    public function setFirstname($firstname)
-    {
-        $this->firstname = $firstname;
-
-        return $this;
+        return 'uploads/img';
     }
 
-    /**
-     * Get firstname
-     *
-     * @return string 
-     */
-    public function getFirstname()
+    protected function getUploadRootDir()
     {
-        return $this->firstname;
+        return __DIR__.'/../../../web/'.$this->getUploadDir();
     }
 
-    /**
-     * Set name
-     *
-     * @param string $name
-     * @return User
-     */
-    public function setName($name)
+    public function getWebPath()
     {
-        $this->name = $name;
-
-        return $this;
+        return null === $this->image ? null : $this->getUploadDir().'/'.$this->image;
     }
 
-    /**
-     * Get name
-     *
-     * @return string
-     */
-    public function getName()
+    public function getAbsolutePath()
     {
-        return $this->name;
+        return null === $this->image ? null : $this->getUploadRootDir().'/'.$this->image;
     }
+    
+    
+    
+    
+    
+    
+    #GENERATE#
 
-    /**
-     * Set picture
-     *
-     * @param string $picture
-     * @return User
-     */
-    public function setPicture($picture)
-    {
-        $this->picture = $picture;
-
-        return $this;
-    }
-
-    /**
-     * Get picture
-     *
-     * @return string 
-     */
-    public function getPicture()
-    {
-        return $this->picture;
-    }
-
-    /**
-     * Set age
-     *
-     * @param integer $age
-     * @return User
-     */
-    public function setAge($age)
-    {
-        $this->age = $age;
-
-        return $this;
-    }
-
-    /**
-     * Get age
-     *
-     * @return integer 
-     */
-    public function getAge()
-    {
-        return $this->age;
-    }
 }
