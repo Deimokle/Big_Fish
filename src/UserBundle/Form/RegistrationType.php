@@ -14,7 +14,7 @@ class RegistrationType extends AbstractType
         $builder
             ->add('name')
             ->add('firstname')
-            ->add('file', 'file', array('label' => 'Big_Fish', 'required' => false))
+            ->add('picture', 'file', array('label' => 'Big_Fish', 'required' => false))
             ->add('age');
 
     }

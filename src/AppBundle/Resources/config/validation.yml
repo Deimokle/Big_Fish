@@ -1,0 +1,5 @@
+Ens\AppBundle\Entity\Event:
+    properties:
+        # ...
+        file:
+            - Image: ~
