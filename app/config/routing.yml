@@ -9,3 +9,6 @@ app:
 fos_user:
     resource: "@FOSUserBundle/Resources/config/routing/all.xml"
 
+homepage:
+    path:     /
+    defaults: { _controller: "AppBundle:Homepage:index" }
