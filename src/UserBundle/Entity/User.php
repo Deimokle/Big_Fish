@@ -41,7 +41,7 @@ class User extends BaseUser
      */
     public function preUpload()
     {
-        if (null !== $this->picture) {
+        if (null !== $this->file) {
             // do whatever you want to generate a unique name
             $this->file = uniqid().'.'.$this->picture->guessExtension();
         }
