@@ -24,7 +24,7 @@ class EventController extends Controller
 
         $events = $em->getRepository('AppBundle:Event')->findAll();
 
-        return $this->render('event/index.html.twig', array(
+        return $this->render('AppBundle:event:index.html.twig', array(
             'events' => $events,
         ));
     }
@@ -47,7 +47,7 @@ class EventController extends Controller
             return $this->redirectToRoute('event_show', array('id' => $event->getId()));
         }
 
-        return $this->render('event/new.html.twig', array(
+        return $this->render('AppBundle:event:new.html.twig', array(
             'event' => $event,
             'form' => $form->createView(),
         ));
@@ -61,7 +61,7 @@ class EventController extends Controller
     {
         $deleteForm = $this->createDeleteForm($event);
 
-        return $this->render('event/show.html.twig', array(
+        return $this->render('AppBundle:event:show.html.twig', array(
             'event' => $event,
             'delete_form' => $deleteForm->createView(),
         ));
@@ -85,7 +85,7 @@ class EventController extends Controller
             return $this->redirectToRoute('event_edit', array('id' => $event->getId()));
         }
 
-        return $this->render('event/edit.html.twig', array(
+        return $this->render('AppBundle:event:edit.html.twig', array(
             'event' => $event,
             'edit_form' => $editForm->createView(),
             'delete_form' => $deleteForm->createView(),
