@@ -144,7 +144,7 @@ class EventController extends Controller
 //            $event->set('lovetArray', $love);
 //
 //        }
-
+            
 
         return $this->render('AppBundle:Default:homepage.html.twig', array(
             'event' => $event,

@@ -20,4 +20,6 @@ AppBundle\Entity\Event:
         name:
             type: string
             length: 255
+        heart:
+            type: boolean
     lifecycleCallbacks: {  }

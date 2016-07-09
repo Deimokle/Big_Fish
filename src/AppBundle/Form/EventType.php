@@ -19,6 +19,7 @@ class EventType extends AbstractType
             ->add('picture')
             ->add('price')
             ->add('name')
+            ->add('heart')
         ;
     }
     
