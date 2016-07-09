@@ -163,4 +163,88 @@ class Event
     {
         return $this->heart;
     }
+    /**
+     * @var \Doctrine\Common\Collections\Collection
+     */
+    private $events;
+
+    /**
+     * @var \Doctrine\Common\Collections\Collection
+     */
+    private $users;
+
+    /**
+     * Constructor
+     */
+    public function __construct()
+    {
+        $this->events = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->users = new \Doctrine\Common\Collections\ArrayCollection();
+    }
+
+    /**
+     * Add events
+     *
+     * @param \UserBundle\Entity\User $events
+     * @return Event
+     */
+    public function addEvent(\UserBundle\Entity\User $events)
+    {
+        $this->events[] = $events;
+
+        return $this;
+    }
+
+    /**
+     * Remove events
+     *
+     * @param \UserBundle\Entity\User $events
+     */
+    public function removeEvent(\UserBundle\Entity\User $events)
+    {
+        $this->events->removeElement($events);
+    }
+
+    /**
+     * Get events
+     *
+     * @return \Doctrine\Common\Collections\Collection 
+     */
+    public function getEvents()
+    {
+        return $this->events;
+    }
+
+    /**
+     * Add users
+     *
+     * @param \AppBundle\Entity\Event $users
+     * @return Event
+     */
+    public function addUser(\AppBundle\Entity\Event $users)
+    {
+        $this->users[] = $users;
+
+        return $this;
+    }
+
+    /**
+     * Remove users
+     *
+     * @param \AppBundle\Entity\Event $users
+     */
+    public function removeUser(\AppBundle\Entity\Event $users)
+    {
+        $this->users->removeElement($users);
+    }
+
+    /**
+     * Get users
+     *
+     * @return \Doctrine\Common\Collections\Collection 
+     */
+    public function getUsers()
+    {
+        return $this->users;
+    }
 }

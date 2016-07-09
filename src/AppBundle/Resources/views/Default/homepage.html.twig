@@ -10,10 +10,10 @@
                 <td>{{ event.picture }}</td><br />
                 <td>{% if event.price == 0 %}free{% else %}{{ event.price }} €{% endif %}</td><br />
                 <td>{{ event.name }}</td><br />
-                <a class="#" id="#" href="{{ path('love_event', { 'id': event.id }) }}">
-                    <i class="glyphicon glyphicon-magnet"></i>Love</a><br />
+                <a class="#" id="#" href="{{ path('love_event', { 'id': event.id }) }}"></a>
+                <i class="glyphicon glyphicon-magnet"></i> <a href="{{ path('event_edit', { 'id': event.id }) }}">like</a>
             </div>
-            <a href="{{ path('event_edit', { 'id': event.id }) }}">edit</a>
+
                     {% endif %}
             {% endfor %}
         </div>

@@ -140,4 +140,27 @@ class Event
     {
         return $this->name;
     }
+
+    /**
+     * Set heart
+     *
+     * @param boolean $heart
+     * @return Event
+     */
+    public function setHeart($heart)
+    {
+        $this->heart = $heart;
+
+        return $this;
+    }
+
+    /**
+     * Get heart
+     *
+     * @return boolean 
+     */
+    public function getHeart()
+    {
+        return $this->heart;
+    }
 }
