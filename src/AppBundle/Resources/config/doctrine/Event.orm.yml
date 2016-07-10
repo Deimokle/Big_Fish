@@ -23,19 +23,8 @@ AppBundle\Entity\Event:
         heart:
             type: boolean
     manyToMany:
-        events:
-            targetEntity: UserBundle\Entity\User
-            inversedBy: user
-            joinTable:
-                name: events_users
-                joinColumns:
-                    user_id:
-                        referencedColumnName: id
-                inverseJoinColumns:
-                    event_id:
-                        referencedColumnName: id
         users:
-            targetEntity: AppBundle\Entity\Event
+            targetEntity: UserBundle\Entity\User
             mappedBy: events
     lifecycleCallbacks:
           prePersist: [ preUpload, setCreatedAtValue, setExpiresAtValue ]

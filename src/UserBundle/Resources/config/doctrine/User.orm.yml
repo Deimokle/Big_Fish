@@ -19,7 +19,18 @@ UserBundle\Entity\User:
             length: 255
         age:
             type: integer
-
+    manyToMany:
+        events:
+            targetEntity: AppBundle\Entity\Event
+            inversedBy: user
+            joinTable:
+                name: events_users
+                joinColumns:
+                    user_id:
+                        referencedColumnName: id
+                inverseJoinColumns:
+                    event_id:
+                        referencedColumnName: id
 
     lifecycleCallbacks:
           prePersist: [ preUpload, setCreatedAtValue, setExpiresAtValue ]

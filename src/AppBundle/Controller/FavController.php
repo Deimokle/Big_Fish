@@ -20,11 +20,19 @@ class FavController extends Controller
     {
         $em = $this->getDoctrine()->getManager();
 
-        $events = $em->getRepository('AppBundle:Event')->findAll();
+        $eventId = $request->query->get('idEvent');
+        if(is_null($eventId) == false) {
+            $event = $em->getRepository('AppBundle:Event')->find($eventId);
+            $this->getUser()->removeEvent($event);
+            $em->persist($this->getUser());
+            $em->flush();
+        }
+        
+       // $events = $em->getRepository('AppBundle:Event')->findAll();
 
 
         return $this->render('AppBundle:Default:fav.html.twig', array(
-            'events' => $events,
+            'user' => $this->getUser(),
         ));
     }
 }
