@@ -5,7 +5,7 @@
 
 
         {% for event in events %}
-            <div class="col s12 m8 offset-m2 l6 offset-l3">
+            <div div style="margin-top: 5px;"class="col s12 m8 offset-m2 l6 offset-l3">
                 <div class="card-panel grey lighten-5 z-depth-1">
                     <div class="row valign-wrapper">
                         <div class="col s2">
@@ -16,7 +16,7 @@
                   {{ event.title }}<br />
                   {{ event.name }}<br />
                   {{ event.price }}<br />
-                  <a href="{{ path('event_show', { 'id': event.id }) }}"><span class="glyphicon glyphicon-eye-open" alt="Afficher"></span></a> <a href="{{ path('event_edit', { 'id': event.id }) }}" class="glyphicon glyphicon-pencil" alt="Modifier"></a>
+                  <a href="{{ path('event_show', { 'id': event.id }) }}"><span class="glyphicon glyphicon-eye-open" alt="Afficher" title="Afficher"></span></a> <a href="{{ path('event_edit', { 'id': event.id }) }}" class="glyphicon glyphicon-pencil" alt="Modifier" title="Modifier"></a>
               </span>
                         </div>
                     </div>
@@ -27,7 +27,7 @@
         {% endfor %}
 
 
-    <a href="{{ path('event_new') }}" class="add"><span class="glyphicon glyphicon-plus-sign"></span>Ajoutez votre événement</a>
+    <p><a href="{{ path('event_new') }}" class="add"><span class="glyphicon glyphicon-plus-sign" alt="Ajoutez votre événement" title="Ajoutez votre événement"></span>Ajoutez votre événement</a></p>
 
 
 {% endblock %}

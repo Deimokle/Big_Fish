@@ -70,7 +70,14 @@ p {
     margin-left: 0px;
     margin-right: 0px;
 }
-
 .div_boucle {
     background-color: #e4f1fe;
+}
+.col s12 m8 offset-m2 l6 offset-l3 {
+ margin: auto;
+    width: 80%;
+}
+span title {
+    background-color: #005275;
+}
 }
