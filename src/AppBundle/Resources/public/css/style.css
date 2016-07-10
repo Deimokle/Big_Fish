@@ -76,7 +76,9 @@ p {
 .div_boucle {
     background-color: #e4f1fe;
 }
-
+.event {
+    margin: auto;
+}
 span title {
     background-color: #005275;
 }

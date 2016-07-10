@@ -3,31 +3,22 @@
 {% block body %}
     <h1>Event list</h1>
 
-
+        <div class="event">
         {% for event in events %}
-            <div class="col s12 m8 offset-m2 l6 offset-l3">
-                <div class="card-panel grey lighten-5 z-depth-1">
-                    <div class="row valign-wrapper">
-                        <div class="col s2">
-                            <a href="{{ path('event_show', { 'id': event.id }) }}"><span class="badge">{{ event.id }}</span></a> <img src="{{ event.picture }}" class="class circle-responsive-img"/>
-                            <h4>{{ event.title }}</h4>{{ event.name }}
-                            {{ event.price }} <a href="{{ path('event_show', { 'id': event.id }) }}"><span class="glyphicon glyphicon-eye-open" alt="Afficher" title="Afficher"></span></a> <a href="{{ path('event_edit', { 'id': event.id }) }}" class="glyphicon glyphicon-pencil" alt="Modifier" title="Modifier"></a></div>
-                        <div class="col s10">
-                            <span class="black-text">
-
-                            </span>
-                        </div>
-                    </div>
+            <div class="media">
+                <div class="media-body"><img src="{{ event.picture }}" class="class circle-responsive-img"/>
+                    <h4 class="media-heading">{{ event.title }}</h4>
+                    <a href="{{ path('event_show', { 'id': event.id }) }}"><span class="badge">{{ event.id }}</span></a>
+                    {{ event.name }}
+                    {{ event.price }}
+                    <a href="{{ path('event_show', { 'id': event.id }) }}"><span class="glyphicon glyphicon-eye-open" alt="Afficher" title="Afficher"></span></a> <a href="{{ path('event_edit', { 'id': event.id }) }}" class="glyphicon glyphicon-pencil" alt="Modifier" title="Modifier"></a></div>
                 </div>
             </div>
 
-
         {% endfor %}
 
-
-    <p><a href="{{ path('event_new') }}" class="add"><span class="glyphicon glyphicon-plus-sign" alt="Ajoutez votre événement" title="Ajoutez votre événement"></span>Ajoutez votre événement</a></p>
-
-
+            <div><a href="{{ path('event_new') }}" class="add"><span class="glyphicon glyphicon-plus-sign" alt="Ajoutez votre événement" title="Ajoutez votre événement"></span>Ajoutez votre événement</a></div>
+        </div>
 {% endblock %}
 
 
