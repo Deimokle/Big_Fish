@@ -6,4 +6,24 @@ UserBundle\Entity\User:
             type: integer
             generator:
                 strategy: AUTO
-    lifecycleCallbacks: {  }
+
+    fields:
+        name:
+            type: string
+            length: 255
+        firstname:
+            type: string
+            length: 255
+        picture:
+            type: string
+            length: 255
+        age:
+            type: integer
+
+
+    lifecycleCallbacks:
+          prePersist: [ preUpload, setCreatedAtValue, setExpiresAtValue ]
+          preUpdate: [ preUpload, setUpdatedAtValue ]
+          postPersist: [ upload ]
+          postUpdate: [ upload ]
+          postRemove: [ removeUpload ]

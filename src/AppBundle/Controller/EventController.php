@@ -37,7 +37,9 @@ class EventController extends Controller
     {
         $event = new Event();
         $form = $this->createForm('AppBundle\Form\EventType', $event);
+        $form->remove('heart');
         $form->handleRequest($request);
+        $event->setHeart(0);
 
         if ($form->isSubmitted() && $form->isValid()) {
             $em = $this->getDoctrine()->getManager();
@@ -127,28 +129,21 @@ class EventController extends Controller
     }
     public function loveAction(Request $request, $id)
     {
-//        $elove = $event->get('loveArray');
-//        var_dump($elove);
-//
-//        if ($elove == null) {
-//            $love =[];
-//            $userId = $this->get('security.context')->getToken()->getUser()->getId();
-//            $love[]=$userId;
-//            $event->set('lovetArray', $love);
-//        }
-//        else {
-//
-//            $user = $this->get('security.context')->getToken()->getUser();
-//            $userId = $user->getId();
-//            $love[]=$userId;
-//            $event->set('lovetArray', $love);
-//
-//        }
-            
+        $em = $this->getDoctrine()->getManager();
 
-        return $this->render('AppBundle:Default:homepage.html.twig', array(
-            'event' => $event,
-            'loves' => $event->get('loveArray'),
-        ));
+        $events = $em->getRepository('AppBundle:Event')->find($id);
+        $user = $this->get('security.context')->getToken()->getUser();
+        $userId = $user->getId();
+        if ($userId != null) {
+            if ($events->getHeart() == 1) {
+                $b = $events->setHeart(0);
+            } else {
+                $b = $events->setHeart(1);
+            }
+            $em->persist($b);
+            $em->flush();
+        }
+        return $this->redirectToRoute('homepage');
+
     }
 }

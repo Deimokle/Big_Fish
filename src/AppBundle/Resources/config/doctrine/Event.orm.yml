@@ -22,4 +22,24 @@ AppBundle\Entity\Event:
             length: 255
         heart:
             type: boolean
-    lifecycleCallbacks: {  }
+    manyToMany:
+        events:
+            targetEntity: UserBundle\Entity\User
+            inversedBy: user
+            joinTable:
+                name: events_users
+                joinColumns:
+                    user_id:
+                        referencedColumnName: id
+                inverseJoinColumns:
+                    event_id:
+                        referencedColumnName: id
+        users:
+            targetEntity: AppBundle\Entity\Event
+            mappedBy: events
+    lifecycleCallbacks:
+          prePersist: [ preUpload, setCreatedAtValue, setExpiresAtValue ]
+          preUpdate: [ preUpload, setUpdatedAtValue ]
+          postPersist: [ upload ]
+          postUpdate: [ upload ]
+          postRemove: [ removeUpload ]
