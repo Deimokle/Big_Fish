@@ -10,13 +10,14 @@
                 <td><img src="{{ asset ('uploads/img/') }}{{ event.picture }}" </td>
                 <td>{% if event.price == 0 %}free{% else %}{{ event.price }} €{% endif %}</td><br />
                 <td>{{ event.name }}</td><br />
-                <a class="#" id="#" href="{{ path('love_event', { 'id': event.id }) }}">
-                {% if event.heart == false %}
-                    <i class="glyphicon glyphicon-heart-empty"></i>
+
+                {% if event in user.events %}
+                    <i class="glyphicon glyphicon-heart"></i>&nbsp;
+                    <a href="{{ path('homepage', { 'idEvent': event.id, love:0 }) }}">Unlike</a>
                  {% else %}
-                     <i class="glyphicon glyphicon-heart"></i>
+                     <i class="glyphicon glyphicon-heart-empty"></i>&nbsp;
+                    <a href="{{ path('homepage', { 'idEvent': event.id, love:1 }) }}">like</a>
                 {% endif %}
-                    <a href="{{ path('event_edit', { 'id': event.id }) }}">like</a></a>
             </div>
 
 

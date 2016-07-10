@@ -139,23 +139,5 @@ class EventController extends Controller
             ->getForm()
         ;
     }
-    public function loveAction(Request $request, $id)
-    {
-        $em = $this->getDoctrine()->getManager();
-
-        $events = $em->getRepository('AppBundle:Event')->find($id);
-        $user = $this->get('security.context')->getToken()->getUser();
-        $userId = $user->getId();
-        if ($userId != null) {
-            if ($events->getHeart() == 1) {
-                $b = $events->setHeart(0);
-            } else {
-                $b = $events->setHeart(1);
-            }
-            $em->persist($b);
-            $em->flush();
-        }
-        return $this->redirectToRoute('homepage');
-
-    }
+   
 }

@@ -3,6 +3,7 @@
 
 namespace UserBundle\Entity;
 
+use Doctrine\Common\Collections\ArrayCollection;
 use FOS\UserBundle\Model\User as BaseUser;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
@@ -41,10 +42,10 @@ class User extends BaseUser
      */
     public function preUpload()
     {
-        if (null !== $this->file) {
-            // do whatever you want to generate a unique name
-            $this->file = uniqid().'.'.$this->picture->guessExtension();
-        }
+//        if (null !== $this->file) {
+//            // do whatever you want to generate a unique name
+//            $this->file = uniqid().'.'.$this->picture->guessExtension();
+//        }
     }
 
     /**
@@ -76,7 +77,7 @@ class User extends BaseUser
      */
     public function upload()
     {
-        if (null === $this->file) {
+       /* if (null === $this->file) {
             return;
         }
         // if there is an error when moving the file, an exception will
@@ -84,7 +85,7 @@ class User extends BaseUser
         // the entity from being persisted to the database on error
         $this->picture->move($this->getUploadRootDir(), $this->picture);
 
-        unset($this->picture);
+        unset($this->picture);*/
     }
 
 
@@ -97,8 +98,11 @@ class User extends BaseUser
             unlink($picture);
         }
     }
-    
-    
+
+    public function __construct(){
+        parent::__construct();
+        $this->events = new ArrayCollection();
+    }
     
     
     
@@ -119,7 +123,7 @@ class User extends BaseUser
      * @var integer
      */
     private $age;
-
+    
 
     /**
      * Set name
@@ -214,4 +218,42 @@ class User extends BaseUser
     }
 
 
+    /**
+     * @var \Doctrine\Common\Collections\Collection
+     */
+    private $events;
+
+
+    /**
+     * Add events
+     *
+     * @param \AppBundle\Entity\Event $events
+     * @return User
+     */
+    public function addEvent(\AppBundle\Entity\Event $events)
+    {
+        $this->events[] = $events;
+
+        return $this;
+    }
+
+    /**
+     * Remove events
+     *
+     * @param \AppBundle\Entity\Event $events
+     */
+    public function removeEvent(\AppBundle\Entity\Event $events)
+    {
+        $this->events->removeElement($events);
+    }
+
+    /**
+     * Get events
+     *
+     * @return \Doctrine\Common\Collections\Collection 
+     */
+    public function getEvents()
+    {
+        return $this->events;
+    }
 }
