@@ -29,7 +29,7 @@
                     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                         <ul class="nav navbar-nav navbar-right">
                             <li>{% block user %}{% endblock %}</li>
-                            <li><a class="hvr-underline-from-left" href="#">Relationship</a></li>
+                            <li><a class="hvr-underline-from-left" href="{{ path('relationship') }}">Relationship</a></li>
                             <li><a class="hvr-underline-from-left" href="{{ path('fav') }}">My fav</a></li>
                             <li><a class="hvr-underline-from-left" href="{{ path('profile') }}">My profile</a></li>
                         </ul>
