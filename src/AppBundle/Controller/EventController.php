@@ -73,26 +73,38 @@ class EventController extends Controller
      * Displays a form to edit an existing Event entity.
      *
      */
-    public function editAction(Request $request, Event $event)
+    public function editAction(Request $request, Event $events)
     {
         $deleteForm = $this->createDeleteForm($event);
-        $editForm = $this->createForm('AppBundle\Form\EventType', $event);
+        $editForm = $this->createForm('CmsBundle\Form\PartenaireType', $event);
         $editForm->handleRequest($request);
 
         if ($editForm->isSubmitted() && $editForm->isValid()) {
             $em = $this->getDoctrine()->getManager();
+
+            if($editForm->get('file')->getData() != null) {
+
+                if($event->getImage() != null) {
+                    unlink(__DIR__.'/../../../web/uploads/img/'.$event->getImage());
+                    $event->setImage(null);
+                }
+            }
+
+            $event->preUpload();
+
             $em->persist($event);
             $em->flush();
 
-            return $this->redirectToRoute('event_edit', array('id' => $event->getId()));
+            return $this->redirectToRoute('partenaire_edit', array('id' => $event->getId()));
         }
 
-        return $this->render('AppBundle:event:edit.html.twig', array(
+        return $this->render('CmsBundle:partenaire:edit.html.twig', array(
             'event' => $event,
             'edit_form' => $editForm->createView(),
             'delete_form' => $deleteForm->createView(),
         ));
     }
+
 
     /**
      * Deletes a Event entity.

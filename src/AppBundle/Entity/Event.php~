@@ -23,15 +23,253 @@ class Event
 
     public function getWebPath()
     {
-        return null === $this->image ? null : $this->getUploadDir().'/'.$this->image;
+        return null === $this->picture ? null : $this->getUploadDir().'/'.$this->picture;
     }
 
     public function getAbsolutePath()
     {
-        return null === $this->image ? null : $this->getUploadRootDir().'/'.$this->image;
+        return null === $this->picture ? null : $this->getUploadRootDir().'/'.$this->picture;
     }
-
-
     #GENERATE#
  
+    /**
+     * @var integer
+     */
+    private $id;
+
+    /**
+     * @var string
+     */
+    private $title;
+
+    /**
+     * @var string
+     */
+    private $picture;
+
+    /**
+     * @var integer
+     */
+    private $price;
+
+    /**
+     * @var string
+     */
+    private $name;
+
+    /**
+     * @var boolean
+     */
+    private $heart;
+
+    /**
+     * @var \Doctrine\Common\Collections\Collection
+     */
+    private $events;
+
+    /**
+     * @var \Doctrine\Common\Collections\Collection
+     */
+    private $users;
+
+    /**
+     * Constructor
+     */
+    public function __construct()
+    {
+        $this->events = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->users = new \Doctrine\Common\Collections\ArrayCollection();
+    }
+
+    /**
+     * Get id
+     *
+     * @return integer 
+     */
+    public function getId()
+    {
+        return $this->id;
+    }
+
+    /**
+     * Set title
+     *
+     * @param string $title
+     * @return Event
+     */
+    public function setTitle($title)
+    {
+        $this->title = $title;
+
+        return $this;
+    }
+
+    /**
+     * Get title
+     *
+     * @return string 
+     */
+    public function getTitle()
+    {
+        return $this->title;
+    }
+
+    /**
+     * Set picture
+     *
+     * @param string $picture
+     * @return Event
+     */
+    public function setPicture($picture)
+    {
+        $this->picture = $picture;
+
+        return $this;
+    }
+
+    /**
+     * Get picture
+     *
+     * @return string
+     */
+    public function getPicture()
+    {
+        return $this->picture;
+    }
+
+    /**
+     * Set price
+     *
+     * @param integer $price
+     * @return Event
+     */
+    public function setPrice($price)
+    {
+        $this->price = $price;
+
+        return $this;
+    }
+
+    /**
+     * Get price
+     *
+     * @return integer 
+     */
+    public function getPrice()
+    {
+        return $this->price;
+    }
+
+    /**
+     * Set name
+     *
+     * @param string $name
+     * @return Event
+     */
+    public function setName($name)
+    {
+        $this->name = $name;
+
+        return $this;
+    }
+
+    /**
+     * Get name
+     *
+     * @return string 
+     */
+    public function getName()
+    {
+        return $this->name;
+    }
+
+    /**
+     * Set heart
+     *
+     * @param boolean $heart
+     * @return Event
+     */
+    public function setHeart($heart)
+    {
+        $this->heart = $heart;
+
+        return $this;
+    }
+
+    /**
+     * Get heart
+     *
+     * @return boolean 
+     */
+    public function getHeart()
+    {
+        return $this->heart;
+    }
+
+    /**
+     * Add events
+     *
+     * @param \UserBundle\Entity\User $events
+     * @return Event
+     */
+    public function addEvent(\UserBundle\Entity\User $events)
+    {
+        $this->events[] = $events;
+
+        return $this;
+    }
+
+    /**
+     * Remove events
+     *
+     * @param \UserBundle\Entity\User $events
+     */
+    public function removeEvent(\UserBundle\Entity\User $events)
+    {
+        $this->events->removeElement($events);
+    }
+
+    /**
+     * Get events
+     *
+     * @return \Doctrine\Common\Collections\Collection 
+     */
+    public function getEvents()
+    {
+        return $this->events;
+    }
+
+    /**
+     * Add users
+     *
+     * @param \AppBundle\Entity\Event $users
+     * @return Event
+     */
+    public function addUser(\AppBundle\Entity\Event $users)
+    {
+        $this->users[] = $users;
+
+        return $this;
+    }
+
+    /**
+     * Remove users
+     *
+     * @param \AppBundle\Entity\Event $users
+     */
+    public function removeUser(\AppBundle\Entity\Event $users)
+    {
+        $this->users->removeElement($users);
+    }
+
+    /**
+     * Get users
+     *
+     * @return \Doctrine\Common\Collections\Collection 
+     */
+    public function getUsers()
+    {
+        return $this->users;
+    }
+
 }

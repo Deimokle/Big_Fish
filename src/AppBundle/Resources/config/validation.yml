@@ -1,4 +1,4 @@
-Ens\AppBundle\Entity\Event:
+AppBundle\Entity\Event:
     properties:
         # ...
         file:
