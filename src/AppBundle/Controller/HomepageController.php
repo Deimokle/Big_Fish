@@ -57,10 +57,13 @@ class HomepageController extends Controller
         if ($userId != null) {
             if ($love == 1) {
                 $user->addEvent($event);
+                $event->addUser($user);
             } else {
                 $user->removeEvent($event);
+                $event->removeUser($user);
             }
             $em->persist($user);
+            $em->persist($event);
             $em->flush();
         }
         return $this->redirectToRoute('homepage');

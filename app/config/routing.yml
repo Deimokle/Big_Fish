@@ -17,6 +17,10 @@ fav:
     path:     /fav
     defaults: { _controller: "AppBundle:Fav:index" }
 
+relationship:
+    path:     /relationship
+    defaults: { _controller: "AppBundle:Relationship:index" }
+
 appevent:
     resource: "@AppBundle/Resources/config/routing.yml"
     prefix:   /appevent
