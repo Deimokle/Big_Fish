@@ -1,5 +1,5 @@
 {% extends 'base.html.twig' %}
-
+{% block user %}{{ 'registration.confirmed'|trans({'%username%': user.username}) }}{% endblock %}
 {% block body %}
     <div class="container-fluid">
         <div class="row">

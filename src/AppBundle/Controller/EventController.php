@@ -39,6 +39,7 @@ class EventController extends Controller
         $form = $this->createForm('AppBundle\Form\EventType', $event);
         $form->remove('heart');
         $form->handleRequest($request);
+        $event->setHeart(0);
 
         if ($form->isSubmitted() && $form->isValid()) {
             $em = $this->getDoctrine()->getManager();
