@@ -15,7 +15,7 @@ use Symfony\Component\Validator\Constraints as Assert;
  */
 class User extends BaseUser
 {
-    public $picture;
+    public $file;
 
     protected function getUploadDir()
     {
@@ -24,17 +24,17 @@ class User extends BaseUser
 
     protected function getUploadRootDir()
     {
-        return __DIR__.'../../../web/'.$this->getUploadDir();
+        return __DIR__.'/../../../web/'.$this->getUploadDir();
     }
 
     public function getWebPath()
     {
-        return null === $this->picture ? null : $this->getUploadDir().'/'.$this->picture;
+        return null === $this->img ? null : $this->getUploadDir().'/'.$this->img;
     }
 
     public function getAbsolutePath()
     {
-        return null === $this->picture ? null : $this->getUploadRootDir().'/'.$this->picture;
+        return null === $this->img ? null : $this->getUploadRootDir().'/'.$this->img;
     }
 
     /**
@@ -42,10 +42,10 @@ class User extends BaseUser
      */
     public function preUpload()
     {
-//        if (null !== $this->file) {
-//            // do whatever you want to generate a unique name
-//            $this->file = uniqid().'.'.$this->picture->guessExtension();
-//        }
+        if (null !== $this->file) {
+            // do whatever you want to generate a unique name
+            $this->img = uniqid().'.'.$this->file->guessExtension();
+        }
     }
 
     /**
@@ -77,40 +77,31 @@ class User extends BaseUser
      */
     public function upload()
     {
-       /* if (null === $this->file) {
+        if (null === $this->file) {
             return;
         }
+
         // if there is an error when moving the file, an exception will
         // be automatically thrown by move(). This will properly prevent
         // the entity from being persisted to the database on error
-        $this->picture->move($this->getUploadRootDir(), $this->picture);
+        $this->file->move($this->getUploadRootDir(), $this->img);
 
-        unset($this->picture);*/
+        unset($this->file);
     }
-
 
     /**
      * @ORM\PostRemove
      */
     public function removeUpload()
     {
-        if ($picture = $this->getAbsolutePath()) {
-            unlink($picture);
+        if ($file = $this->getAbsolutePath()) {
+            unlink($file);
         }
     }
-
-    public function __construct(){
-        parent::__construct();
-        $this->events = new ArrayCollection();
-    }
-    
-    
-    
-    #GENERATE#
-
     /**
      * @var string
      */
+
     private $name;
 
     /**
@@ -118,12 +109,21 @@ class User extends BaseUser
      */
     private $firstname;
 
+    /**
+     * @var string
+     */
+    private $img;
 
     /**
      * @var integer
      */
     private $age;
-    
+
+    /**
+     * @var \Doctrine\Common\Collections\Collection
+     */
+    private $events;
+
 
     /**
      * Set name
@@ -172,26 +172,26 @@ class User extends BaseUser
     }
 
     /**
-     * Set picture
+     * Set img
      *
-     * @param string $picture
+     * @param string $img
      * @return User
      */
-    public function setPicture($picture)
+    public function setImg($img)
     {
-        $this->picture = $picture;
+        $this->img = $img;
 
         return $this;
     }
 
     /**
-     * Get picture
+     * Get img
      *
-     * @return string
+     * @return string 
      */
-    public function getPicture()
+    public function getImg()
     {
-        return $this->picture;
+        return $this->img;
     }
 
     /**
@@ -216,13 +216,6 @@ class User extends BaseUser
     {
         return $this->age;
     }
-
-
-    /**
-     * @var \Doctrine\Common\Collections\Collection
-     */
-    private $events;
-
 
     /**
      * Add events
@@ -256,4 +249,5 @@ class User extends BaseUser
     {
         return $this->events;
     }
+
 }
