@@ -1,5 +1,5 @@
 {% extends 'base.html.twig' %}
-{% block user %}{{ 'registration.confirmed'|trans({'%username%': user.username}) }}{% endblock %}
+{#{% block user %}{{ 'registration.confirmed'|trans({'%username%': user.username}) }}{% endblock %}#}
 {% block body %}
     <div class="container-fluid">
         <div class="row">
@@ -7,7 +7,7 @@
 
             <div style="margin-top: 5px;" class="col-md-offset-2 col-sm-offset-1 col-md-8 col-sm-10 col-xs-12 div_boucle">
                 <td>Name of event :{{ event.title }}</td><br />
-                <td>{{ event.picture }}</td><br />
+                <td><img src="{{ asset ('uploads/img/') }}{{ event.picture }}" </td>
                 <td>{% if event.price == 0 %}free{% else %}{{ event.price }} €{% endif %}</td><br />
                 <td>{{ event.name }}</td><br />
                 <a class="#" id="#" href="{{ path('love_event', { 'id': event.id }) }}">
