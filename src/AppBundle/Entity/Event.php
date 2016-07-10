@@ -18,7 +18,7 @@ class Event
 
     protected function getUploadRootDir()
     {
-        return __DIR__.'../../../web/'.$this->getUploadDir();
+        return __DIR__.'/../../../web/'.$this->getUploadDir();
     }
 
     public function getWebPath()
@@ -30,6 +30,7 @@ class Event
     {
         return null === $this->picture ? null : $this->getUploadRootDir().'/'.$this->picture;
     }
+
     /**
      * @ORM\PrePersist
      */
@@ -37,7 +38,7 @@ class Event
     {
         if (null !== $this->file) {
             // do whatever you want to generate a unique name
-            $this->file = uniqid().'.'.$this->picture->guessExtension();
+            $this->picture = uniqid().'.'.$this->file->guessExtension();
         }
     }
 
@@ -81,6 +82,7 @@ class Event
 
         unset($this->file);
     }
+
     /**
      * @ORM\PostRemove
      */
@@ -90,7 +92,6 @@ class Event
             unlink($file);
         }
     }
-
     #GENERATE#
  
     /**
@@ -191,7 +192,7 @@ class Event
     /**
      * Get picture
      *
-     * @return string 
+     * @return string
      */
     public function getPicture()
     {
