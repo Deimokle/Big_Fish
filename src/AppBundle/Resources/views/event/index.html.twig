@@ -3,33 +3,33 @@
 {% block body %}
     <h1>Event list</h1>
 
-    <table>
-        <thead>
-            <tr class="titre">
-                <th class="titre">Id</th>
-                <th class="titre">Title</th>
-                <th class="titre">Picture</th>
-                <th class="titre">Price</th>
-                <th class="titre">Name</th>
-                <th class="titre">Actions</th>
-            </tr>
-        </thead>
-        <tbody>
+
         {% for event in events %}
-            <tr>
-                <td><a href="{{ path('event_show', { 'id': event.id }) }}">{{ event.id }}</a></td>
-                <td>{{ event.title }}</td>
-                <td>{{ event.picture }}</td>
-                <td>{{ event.price }}</td>
-                <td>{{ event.name }}</td>
-                <td> <a href="{{ path('event_show', { 'id': event.id }) }}">Afficher</a> <a href="{{ path('event_edit', { 'id': event.id }) }}">Modifier</a>
-                </td>
-            </tr>
+            <div class="col s12 m8 offset-m2 l6 offset-l3">
+                <div class="card-panel grey lighten-5 z-depth-1">
+                    <div class="row valign-wrapper">
+                        <div class="col s2">
+                            <img src="{{ event.picture }}" class="class circle-responsive-img"/>
+                        </div>
+                        <div class="col s10">
+              <span class="black-text">
+                  {{ event.title }}<br />
+                  {{ event.name }}<br />
+                  {{ event.price }}<br />
+                  <a href="{{ path('event_show', { 'id': event.id }) }}"><span class="glyphicon glyphicon-eye-open" alt="Afficher"></span></a> <a href="{{ path('event_edit', { 'id': event.id }) }}" class="glyphicon glyphicon-pencil" alt="Modifier"></a>
+              </span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+                <a href="{{ path('event_show', { 'id': event.id }) }}">{{ event.id }}</a>
+
         {% endfor %}
 
-        </tbody>
-    </table>
-    <a href="{{ path('event_new') }}" class="add">Ajoutez votre événement</a>
+
+    <a href="{{ path('event_new') }}" class="add"><span class="glyphicon glyphicon-plus-sign"></span>Ajoutez votre événement</a>
 
 
 {% endblock %}
+
+
