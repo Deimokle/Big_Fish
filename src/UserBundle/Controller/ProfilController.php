@@ -6,8 +6,18 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 
 class ProfilController extends Controller
 {
-    public function indexAction()
+    public function indexAction(Request $request)
     {
-        return $this->render('UserBundle:Default:index.html.twig');
+        $em = $this->getDoctrine()->getManager();
+
+        $events = $em->getRepository('AppBundle:Events')->findAll();
+        $users = $em->getRepository('AppBundle:User')->findAll();
+
+
+        return $this->render('AppBundle:Default:profile.html.twig', array(
+            'users' => $users,
+            'events' => $events,
+
+        ));
     }
 }
